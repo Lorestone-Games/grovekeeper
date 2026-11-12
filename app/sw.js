@@ -1,9 +1,9 @@
-// JournalScape phone app: offline shell. App files are served from the cache (refreshed in the background); Google
-// sign-in and Drive requests always go to the network and are never cached. Bump VERSION when files change.
-const VERSION='gk-phone-mw208hj0',SHELL=['./','index.html','style.css','app.mjs','logic.mjs','drive.mjs','sync.mjs','sync-stamps.mjs','groceries.mjs','journal.mjs','journal-export.mjs','config.mjs','manifest.webmanifest','icon-192.png','icon-512.png'];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(VERSION).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()));});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==VERSION).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
-self.addEventListener('fetch',e=>{
- const url=new URL(e.request.url);if(e.request.method!=='GET'||url.origin!==location.origin)return;
- e.respondWith(caches.open(VERSION).then(async cache=>{const hit=await cache.match(e.request);const fresh=fetch(e.request).then(r=>{if(r.ok)cache.put(e.request,r.clone());return r;}).catch(()=>hit);return hit||fresh;}));
-});
+// JournalScape's phone app moved to https://journalscape.lorestonegames.com/app/ (12 November 2026).
+// This replacement service worker clears the old app's cached files and removes itself, so phones that installed the
+// old address see the "moved" page instead of a stale copy.
+self.addEventListener('install',()=>self.skipWaiting());
+self.addEventListener('activate',event=>event.waitUntil((async()=>{
+ for(const key of await caches.keys())await caches.delete(key);
+ await self.registration.unregister();
+ for(const client of await self.clients.matchAll({type:'window'}))client.navigate(client.url);
+})()));

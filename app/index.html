@@ -2,21 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1f3a2b">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="JournalScape">
-<title>JournalScape</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JournalScape has moved</title>
+<link rel="canonical" href="https://journalscape.lorestonegames.com/app/">
+<link rel="icon" type="image/png" href="icon-192.png">
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#1c2a24;color:#efe6d2;font:18px/1.6 Georgia,"Times New Roman",serif;padding:20px;box-sizing:border-box}
+main{max-width:30em;text-align:center}
+img{width:72px;height:72px;border-radius:16px}
+h1{font-size:1.6rem;margin:.6em 0 .3em}
+a.btn{display:inline-block;margin-top:14px;padding:12px 20px;border-radius:10px;background:#d9b36b;color:#1c1608;text-decoration:none;font:600 16px system-ui,sans-serif}
+p.small{font-size:.9rem;color:#c3bba5}
+</style>
 </head>
 <body>
-<header class="bar"><strong>JournalScape</strong><button id="sync" class="sync" type="button" aria-live="polite">…</button></header>
-<main id="app" aria-live="polite"></main>
-<div id="toast" class="toast" role="status" hidden></div>
-<script type="module" src="app.mjs"></script>
+<main>
+<img src="icon-192.png" alt="">
+<h1>JournalScape has moved</h1>
+<p>The phone app now lives at <strong>journalscape.lorestonegames.com/app</strong>. Open it, sign in with the same Google account, and your planner comes back from your Google Drive.</p>
+<a class="btn" href="https://journalscape.lorestonegames.com/app/">Open JournalScape</a>
+<p class="small">Then add it to your home screen again and remove the old icon.</p>
+</main>
+<script>if(navigator.serviceWorker)navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.update())).catch(()=>{});</script>
 </body>
 </html>
